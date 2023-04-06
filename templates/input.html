@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stress Detection</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <style>
+    body{
+        background-image:url("stress2.jpg");
+        margin:0;
+        min-height:100vh;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        font-family:monospace;
+        background-size:cover;
+    }
+    
+    
+    .container{
+        position: relative;
+        max-width: 900px;
+        width: 100%;
+        border-radius: 6px;
+        padding: 30px;
+        margin: 0 15px;
+        background-color: aliceblue;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    }
+    
+    .container header{
+        position: relative;
+        font-size:35px;
+        font-weight: 200;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        text-shadow:5px 5px rgba(0,0,0,.3);
+        letter-spacing:2px;
+        align-items: center;
+    }
+    
+    .container header::before{
+        content: "";
+        left:0;
+        position: absolute;
+        bottom:-2px;
+        height: 3px;
+        width: 27px;
+    }
+    
+    .container form{
+        position: relative;
+        margin-top: 1;
+        min-height: 490px;
+        background-color: aliceblue;
+    
+    }
+    
+    .container form .details{
+        margin-top: 10px;
+    }
+    
+    .container form .details.ID{  
+        margin-top: 10px;
+    }
+    
+    .container form .title{
+        display:block;
+        margin-bottom: 8px;
+        font-size:24px;
+        font-weight: 500;
+        font-family:'Times New Roman', Times, serif;
+        font-display: 20px;
+        margin:6px 0;
+        color: #1a1717;
+    }
+    
+    .container form .fields{
+        display: flex;
+        align-items:center;
+        justify-content:space-between;
+        flex-wrap: wrap;
+    }
+    
+    form .fields .input-field{
+        display:flex;
+        width: calc(100% / 2 -15px);
+        flex-direction:column;
+        padding:2px 80px;
+    
+    }
+    
+    form .fields .input-field{
+        display: flex;
+        width:calc(100%/3 -15px);
+        flex-direction: column;
+        margin:4px 0;
+    }
+    .main{
+    display: flex;
+    align-items:center;
+    justify-content:center;
+
+}
+
+.main label{
+    font-size: 20px;
+    font-weight: 500;
+    color: #2e2e2e;
+
+}
+
+.main input{
+    outline: none;
+    font-size: 20px;
+    font-weight: 400;
+    color:#333;
+    border-radius 5px; ;
+    border: 1px solid #aaa;
+    padding: 0 15px;
+    height: 42px;
+    margin: 8px 0;
+}
+
+    
+.main{
+    display: flex;
+    align-items:center;
+    justify-content:center;
+
+}
+
+.main label{
+    font-size: 16px;
+    font-weight: 500;
+    color: #2e2e2e;
+
+}
+
+.main input{
+    outline: none;
+    font-size: 20px;
+    font-weight: 400;
+    color:#333;
+    border-radius 5px; ;
+    border: 1px solid #aaa;
+    padding: 0 15px;
+    height: 60px;
+    width: 800px;
+    margin: 8px 0;
+}
+    
+    .input-field label{
+        font-size: 12px;
+        font-weight: 500;
+        color: #2e2e2e;
+    
+    }
+    
+    .input-field input{
+        outline: none;
+        font-size: 14px;
+        font-weight: 400;
+        color:#333;
+        border-radius 5px; ;
+        border: 1px solid #aaa;
+        padding: 0 15px;
+        height: 42px;
+        margin: 8px 0;
+    
+    }
+    
+    .container form button{
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        height: 45px;
+        max-width: 180px;
+        width: 100%;
+        border: none;
+        outline: none;
+        color: white;
+        border-radius: 5px;
+        margin: 25px 0;
+        background-color:rgb(132, 148, 238);
+        transition: all 0.3s linear;
+        cursor: pointer;
+    }
+    
+    form button:hover{
+        background-color: rgb(60, 60, 154);
+        margin:40px;
+    }
+    
+    
+    .btn{
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }    
+
+    </style>
+    <div class="container">
+        <header>Stress Detection</header>
+        <form action="/predict" method="post">
+            <div class="form first">
+                <div class="details personal">
+                    <span class="title">Enter:</span>
+                    <div class="main">
+                        <label for="choice">Choose 1 to know the level of stress or choose 0 to know whether you are stressed or not:</label>
+                        <select name="choice" id="choice">
+                        <option value="1">1</option>
+                        <option value="0">0</option>
+                        </select>
+                    </div>
+                    <div class="fields">
+                        <div class=" input-field">
+                            <label for="ECG">ECG:</label>
+                            <input type="text" name="ECG" id="ECG" placeholder="Enter ECG" class="input">
+                        </div>
+
+                        <div class="input-field">
+                            <label for="Hand GSR">Hand GSR:</label>
+                            <input type="text" name="Hand_GSR" id="Hand_GSR" placeholder="Enter Hand GSR" class="input">
+                        </div>
+
+                        <div class=" input-field">
+                            <label for="Heart Rate(HR)">HR:</label>
+                            <input type="text" name="HR" id="HR" placeholder="Enter Heart Rate(HR)" class="input">
+                        </div>
+
+                        <div class="input-field">
+                            <label for="Foot GSR">Foot GSR:</label>
+                            <input type="text" name="Foot_GSR" id="Foot_GSR" placeholder="Enter Foot GSR" class="input">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="details ID">
+                    <span class="title">Enter avg. hours spent doing these activities in a week </span>
+                    <div class="fields">
+                        <div class=" input-field">
+                            <label for="v1">Lying down:</label>
+                            <input type="text" name="v1" id="v1" placeholder="Enter in hours" class="input">
+                        </div>
+
+                        <div class="input-field">
+                            <label for="v10">At main workplace:</label>
+                            <input type="text" name="v10" id="v10" placeholder="Enter in hours" class="input">
+                        </div>
+
+                        <div class=" input-field">
+                            <label for="v2">Sleeping:</label>
+                            <input type="text" name="v2" id="v2" placeholder="Enter in hours" class="input">
+                        </div>
+
+                        <div class="input-field">
+                            <label for="v11">Watching TV:</label>
+                            <input type="text" name="v11" id="v11" placeholder="Enter in hours" class="input">
+                        </div>
+
+                        <div class="input-field">
+                            <label for="v3">With friends:</label>
+                            <input type="text" name="v3" id="v3" placeholder="Enter in hours" class="input">
+                        </div>
+
+                        <div class="input-field">
+                            <label for="v12">Surfing the internet:</label>
+                            <input type="text" name="v12" id="v12" placeholder="Enter in hours" class="input">
+                        </div>
+
+                        <div class="input-field">
+                            <label for="v4">Shopping:</label>
+                            <input type="text" name="v4" id="v4" placeholder="Enter in hours" class="input">
+                        </div>
+
+                        <div class=" input-field">
+                            <label for="v13">Computer work:</label>
+                            <input type="text" name="v13" id="v13" placeholder="Enter in hours" class="input">
+                        </div>
+
+                        <div class=" input-field">
+                            <label for="v5">Running:</label>
+                            <input type="text" name="v5" id="v5" placeholder="Enter in hours" class="input">
+                        </div>
+
+                        <div class="input-field">
+                            <label for="v14">Phone in hand:</label>
+                            <input type="text" name="v14" id="v14" placeholder="Enter in hours" class="input">
+                        </div>
+
+                        <div class="input-field">
+                            <label for="v6">Exercise:</label>
+                            <input type="text" name="v6" id="v6" placeholder="Enter in hours" class="input">
+                        </div>
+
+                        <div class="input-field">
+                            <label for="v15">In a meeting:</label>
+                            <input type="text" name="v15" id="v15" placeholder="Enter in hours" class="input">
+                        </div>
+
+
+                        <div class="input-field">
+                            <label for="v7">At gym:</label>
+                            <input type="text" name="v7" id="v7" placeholder="Enter in hours" class="input">
+                        </div>
+
+                        <div class="input-field">
+                            <label for="v16">Lab work:</label>
+                            <input type="text" name="v16" id="v16" placeholder="Enter in hours" class="input">
+                        </div>
+
+                        <div class="input-field">
+                            <label for="v8">At party:</label>
+                            <input type="text" name="v8" id="v8" placeholder="Enter in hours" class="input">
+                        </div>
+
+
+                        <div class="input-field">
+                            <label for="v17">In class:</label>
+                            <input type="text" name="v17" id="v17" placeholder="Enter in hours" class="input">
+                        </div>
+
+
+                        <div class=" input-field">
+                            <label for="v9">Bicycling</label>
+                            <input type="text" name="v9" id="v9" placeholder="Enter in hours" class="input">
+                        </div>
+
+                        <div class="input-field">
+                            <label for="v18">Drinking(Alcohol):</label>
+                            <input type="text" name="v18" id="v18" placeholder="Enter in hours" class="input">
+                        </div>
+                    </div>
+                    <div class="btn">
+                        <input type="submit" value="ENTER"></input>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
